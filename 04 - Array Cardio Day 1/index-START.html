@@ -39,28 +39,68 @@
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
 
+    console.table(inventors.filter(inventor => {
+      return inventor.year - (inventor.year % 100) === 1500; // Why'd I do it like this
+    }));
+
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
+
+    console.table(inventors.map(inventor => {
+      return `${inventor.first} ${inventor.last}`
+    }));
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
 
+    console.table(inventors.sort((first, second) => {
+      return first.year - second.year;
+    }));
+
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
 
+    console.log(inventors.reduce((sum, next) => sum + (next.passed - next.year), 0));
+
     // 5. Sort the inventors by years lived
+
+    console.table(inventors.sort((first, second) => {
+      return (first.passed - first.year) - (second.passed - second.year);
+    }));
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+    // Alright for a second there I thought you wanted me to web scrape.
+    /* const page = document.querySelector(".mw-category");
+    const boulevards = [...page.querySelectorAll("a")];
+    console.log(boulevards.filter(boulevard => {
+      return boulevard.textContent.includes("de");
+    }).map(a => a.textContent)); */
 
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
 
+    console.table(people.sort((a, b) => {
+      return a.localeCompare(b);
+    }));
+
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
 
+    sums = {};
+
+    data.reduce((acc, datum) => {
+      console.log(Boolean(sums[datum]))
+
+      if (!Boolean(sums[datum])) {
+        sums[datum] = 0;
+      }
+      sums[datum] += 1;
+    });
+
+    console.table(sums);
   </script>
 </body>
 </html>
