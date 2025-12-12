@@ -92,8 +92,6 @@
     sums = {};
 
     data.reduce((acc, datum) => {
-      console.log(Boolean(sums[datum]))
-
       if (!Boolean(sums[datum])) {
         sums[datum] = 0;
       }
